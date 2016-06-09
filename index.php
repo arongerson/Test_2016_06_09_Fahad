@@ -18,21 +18,21 @@
                     <form name="login">
                         <div class="login-input">
                             <input type="text" name="username" value="" placeholder="username" ng-model="username"/>
-                            <span class="login-error" ng-show="validateUsername() && login.username.$touched">{{ error_username}}</span>
+                            <span class="login-error" ng-show="!validateUsername() && login.username.$touched">{{ error_username}}</span>
                         </div>
                         <div class="login-input">
                             <input type="password" name="password"  placeholder="password" ng-model="password"/>
-                            <span class="login-error" ng-show="validatePassword(password) && login.password.$touched" >{{ error_password}}</span>
+                            <span class="login-error" ng-show="!validatePassword() && login.password.$touched" >{{ error_password}}</span>
                         </div>
                         <div class="login-button">
-                            <input type="button" value="Login" ng-click="click()" 
+                            <input type="button" value="Login" ng-click="click()" style="{{ button_disabled_class }}"
                                    ng-disabled="validate()"/>
                         </div>
                         <div class="separator"></div>
                     </form>
                 </div>
             </div>
-            <div class="feedback"><img src="" alt="loading" ng-show="show_feedback()"/><span> {{ feedback }}</span></div>
+            <div class="feedback"><img src="" alt="loading" ng-show="showLoading()"/><span> {{ feedback }}</span></div>
             <div class="nav-link">
                 <ul>
                     <li><a ng-href="#">Privacy Policy</a></li>
