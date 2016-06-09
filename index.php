@@ -12,6 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
+        // this is the sample file created to synch the files
         ?>
     </body>
 </html>
