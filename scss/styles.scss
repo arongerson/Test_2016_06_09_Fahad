@@ -7,4 +7,90 @@ and open the template in the editor.
     Created on : Jun 9, 2016, 3:03:05 PM
     Author     : aron
 */
+@import 'const.scss';
+@import 'mixins.scss';
+
+#header {
+    text-align: center;
+    margin-top: $login_title_top_margin;
+    padding: $medium_padding;
+    font: {
+        size: $x_large_font_size;
+    }
+    .first {
+        color: $main_bg_color1;
+    }
+    
+    .second {
+        color: $main_bg_color2;
+    }
+}
+
+#content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    @include shadow(1px, 1px, 5px, #ccc);
+
+    .login-title {
+        padding: $title_padding;
+        @include linear-gradient($main_bg_color1, $main_bg_color2);
+        color: #fff;
+        font: {
+            size: $title_font_size;
+        }
+    }
+
+    .login-body {
+        padding: $login_body_padding;
+    }
+
+    .login-input, .login-button {
+        @include form();
+    }
+    
+    .login-error {
+        color: #ff0011;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 95%;
+        margin-left: 10px auto;
+        margin-right: 10px auto;
+    }
+}
+
+.feedback {
+    text-align: center;
+    padding: $small_padding;
+    img {
+        display: inline-block;
+    }
+}
+
+.nav-link {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $medium_padding;
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        li {
+            padding: 0px;
+            margin: 0px;
+            float: left;
+            a {
+                display: block;
+                padding: $small_padding;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
 

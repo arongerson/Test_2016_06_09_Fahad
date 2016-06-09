@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -7,5 +8,151 @@ and open the template in the editor.
     Created on : Jun 9, 2016, 3:03:05 PM
     Author     : aron
 */
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 9, 2016, 3:03:56 PM
+    Author     : aron
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 9, 2016, 3:03:39 PM
+    Author     : aron
+*/
+#header {
+  text-align: center;
+  margin-top: 100px;
+  padding: 10px;
+  font-size: 40px; }
+  #header .first {
+    color: #ff2055; }
+  #header .second {
+    color: #002055; }
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  -webkit-box-shadow: 1px 1px 5px #ccc;
+  -moz-box-shadow: 1px 1px 5px #ccc;
+  box-shadow: 1px 1px 5px #ccc; }
+  #content .login-title {
+    padding: 10px;
+    /* Fallback for sad browsers */
+    background-color: #002055;
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(#ff2055, #002055);
+    /* Opera */
+    background-image: -o-linear-gradient(#ff2055, #002055);
+    /* WebKit (Safari 4+, Chrome 1+) */
+    background-image: -webkit-gradient(linear, ┬╗ left top, left bottom, color-stop(0, #ff2055), ┬╗ color-stop(1, #002055));
+    /* WebKit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(#ff2055, #002055);
+    /* IE10 */
+    background-image: -ms-linear-gradient(#ff2055, #002055);
+    /* W3C */
+    background-image: linear-gradient(#ff2055, #002055);
+    color: #fff;
+    font-size: 24px; }
+  #content .login-body {
+    padding: 10px; }
+  #content .login-input, #content .login-button {
+    padding: 5px; }
+    #content .login-input input[type='text'], #content .login-input input[type='password'], #content .login-button input[type='text'], #content .login-button input[type='password'] {
+      width: 98%;
+      padding: 5px;
+      outline: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid 2px #002055;
+      display: inline-block;
+      background: white;
+      font-size: 20px; }
+    #content .login-input input[type='button'], #content .login-button input[type='button'] {
+      /* Fallback for sad browsers */
+      background-color: #002055;
+      /* Mozilla Firefox */
+      background-image: -moz-linear-gradient(#ff2055, #002055);
+      /* Opera */
+      background-image: -o-linear-gradient(#ff2055, #002055);
+      /* WebKit (Safari 4+, Chrome 1+) */
+      background-image: -webkit-gradient(linear, ┬╗ left top, left bottom, color-stop(0, #ff2055), ┬╗ color-stop(1, #002055));
+      /* WebKit (Chrome 11+) */
+      background-image: -webkit-linear-gradient(#ff2055, #002055);
+      /* IE10 */
+      background-image: -ms-linear-gradient(#ff2055, #002055);
+      /* W3C */
+      background-image: linear-gradient(#ff2055, #002055);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px; }
+      #content .login-input input[type='button']:hover, #content .login-button input[type='button']:hover {
+        /* Fallback for sad browsers */
+        background-color: #003388;
+        /* Mozilla Firefox */
+        background-image: -moz-linear-gradient(#ff537c, #003388);
+        /* Opera */
+        background-image: -o-linear-gradient(#ff537c, #003388);
+        /* WebKit (Safari 4+, Chrome 1+) */
+        background-image: -webkit-gradient(linear, ┬╗ left top, left bottom, color-stop(0, #ff537c), ┬╗ color-stop(1, #003388));
+        /* WebKit (Chrome 11+) */
+        background-image: -webkit-linear-gradient(#ff537c, #003388);
+        /* IE10 */
+        background-image: -ms-linear-gradient(#ff537c, #003388);
+        /* W3C */
+        background-image: linear-gradient(#ff537c, #003388); }
+    #content .login-input input[type='button'].ng-valid, #content .login-button input[type='button'].ng-valid {
+      background-color: #ccc; }
+    #content .login-input .button_disabled, #content .login-button .button_disabled {
+      background-color: #ccc; }
+  #content .login-error {
+    color: #ff0011; }
+  @media screen and (max-width: 600px) {
+    #content {
+      width: 95%;
+      margin-left: 10px auto;
+      margin-right: 10px auto; } }
+
+.feedback {
+  text-align: center;
+  padding: 5px; }
+  .feedback img {
+    display: inline-block; }
+
+.nav-link {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px; }
+  .nav-link ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    display: inline-block; }
+    .nav-link ul li {
+      padding: 0px;
+      margin: 0px;
+      float: left; }
+      .nav-link ul li a {
+        display: block;
+        padding: 5px;
+        text-decoration: none; }
+        .nav-link ul li a:hover {
+          text-decoration: underline; }
 
 /*# sourceMappingURL=styles.css.map */
