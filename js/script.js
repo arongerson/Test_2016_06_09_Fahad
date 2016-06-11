@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('account', ['ngRoute']).controller('loginController', function ($scope, $http) {
+var app = angular.module('account', ['ui.router']).controller('loginController', function ($scope, $http) {
+    alert('hiiii');
     var init = function () {
         $scope.error_username = '';
         $scope.username = '';
@@ -63,6 +64,19 @@ var app = angular.module('account', ['ngRoute']).controller('loginController', f
 //            $scope.remote_feedback = 'oooops, the server can not be reached, check your internet connection';
 //        });
     };
-})
+});
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/login');
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: 'partials/login.php',
+        controller: 'loginController'
+    }).state("otherwise", { 
+        url: '/login',
+        templateUrl: 'partials/login.php',
+        controller: 'loginController'
+    });
+});
 
 
