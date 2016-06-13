@@ -48,15 +48,14 @@ var app = angular.module('account', ['ui.router']).controller('loginController',
     $scope.click = function () {
         $scope.showLoading = true;
         $http({
-            url: 'http://localhost:8080/login?username=Gerardo&password=Gerardo',
+            url: 'http://localhost:8080/login?username=' + $scope.username.trim() + "&password=" + $scope.password.trim(),
             method: "GET",
-            data: $.param({'username': $scope.username, 'password': $scope.password}),
             headers: {'Content-type': 'application/x-www-form-urlencoded'}
         }).then(function (response) {
             var res = response.data;
             if (res.loginSucceeded) {
                 // $rootScope.dynamic = 'partials/account.php';
-                window.location = "account.php";
+                window.location = "account.php?user=" + $scope.username + "&session_id=" + res.sessionId;
             } else {
                 $scope.feedback = "Incorrect username and/or password";
                 $scope.showLoading = false;
@@ -65,9 +64,6 @@ var app = angular.module('account', ['ui.router']).controller('loginController',
             $scope.remote_feedback = 'oooops, the server can not be reached, check your internet connection';
         });
     };
-}).controller('accountController', function($scope, $rootScope, $http) {
-    dropdown();
-    $scope.user = 'Username';
 });
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -83,31 +79,22 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
-$(document).ready(function () {
-    
+$(document).ready(function() {
+    $('.page').click(function () {
+        var id = $(this).attr('data-bind');
+        $('#' + id).css('opacity', '1');
+        $('.modalDialog').css('z-index', -100);
+        $('#' + id).css('z-index', 100);
+    });
+
+    $('.close').click(function () {
+        var id = $(this).attr('data-bind');
+        $('#' + id).css('opacity', '0');
+        $('.modalDialog').css('z-index', -100);
+    });
+
 });
 
-function dropdown() {
-    var dropHoverBgColor;
-    var dropBgColor = $('#account-dropdown').css('background-color');
-    //alert(dropBgColor);
-    $('#account-dropdown').hover(function () {
-        $('#dropdown-menu').show();
-        dropHoverBgColor = $('#dropdown-menu').css('background-color');
-        $('#account-dropdown').css('background-color', dropHoverBgColor);
-    }, function () {
-        hide_dropdown = setTimeout(function () {
-            $('#dropdown-menu').hide();
-            $('#account-dropdown').css('background-color', dropBgColor);
-        }, 10);
-    });
-    $('#dropdown-menu').hover(function () {
-        clearTimeout(hide_dropdown);
-        $('#account-dropdown').css('background-color', dropHoverBgColor);
-    }, function () {
-        $('#account-dropdown').css('background-color', dropBgColor);
-        $('#dropdown-menu').hide();
-    });
-}
+
 
 

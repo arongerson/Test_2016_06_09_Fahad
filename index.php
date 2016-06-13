@@ -1,3 +1,8 @@
+<?php
+// unset all sessions if any
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html ng-app="account">
     <head>
@@ -10,16 +15,10 @@
         <script src="js/script.js" type="text/javascript"></script>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body ng-init="dynamic='partials/login.php'">
+    <body ng-init="dynamic = 'partials/login.php'">
         <div>
             <div ng-include="dynamic"></div>
-            <div class="nav-link">
-                <ul>
-                    <li><a ng-href="#">Privacy Policy</a></li>
-                    <li><a ng-href="#">Terms of Use</a></li>
-                    <li><a ng-href="#">Support</a></li>
-                </ul>
-            </div>
+            <?php require './partials/footer.php'; ?>
         </div>
     </body>
 </html>

@@ -32,6 +32,13 @@ $profile_pic_size: 100px;
 $welcome_msg_font_size: 20px;
 
 $icon_size: 20px;
+$menu_width: 250px;
+$logo_size: 50px;
+
+$table_header_bg_color: #500000 ;
+$table_odd_row_bg_color: lighten($table_header_bg_color, 10%);
+$table_even_row_bg_color: lighten($table_header_bg_color, 20%);
+$table_hover_bg_color: darken($table_header_bg_color, 5%);
 
 $header_vertical_padding: 20px;
 $header_menu_vertical_padding: 5px;

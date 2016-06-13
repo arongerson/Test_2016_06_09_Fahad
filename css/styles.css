@@ -136,6 +136,12 @@ body {
   height: 100px;
   background: #FFA500;
   position: relative; }
+  #account .top img {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 20px;
+    left: 30px; }
   #account .top .position {
     position: absolute;
     right: 0px;
@@ -198,7 +204,21 @@ body {
         #account .top .position ul li input {
           padding: 5px; }
 #account .middle {
-  background-color: #ffc966; }
+  background-color: #ffc966;
+  /* Fallback for sad browsers */
+  background-color: #ffae1a;
+  /* Mozilla Firefox */
+  background-image: -moz-linear-gradient(#ffc966, #ffae1a);
+  /* Opera */
+  background-image: -o-linear-gradient(#ffc966, #ffae1a);
+  /* WebKit (Safari 4+, Chrome 1+) */
+  background-image: -webkit-gradient(linear, ┬╗ left top, left bottom, color-stop(0, #ffc966), ┬╗ color-stop(1, #ffae1a));
+  /* WebKit (Chrome 11+) */
+  background-image: -webkit-linear-gradient(#ffc966, #ffae1a);
+  /* IE10 */
+  background-image: -ms-linear-gradient(#ffc966, #ffae1a);
+  /* W3C */
+  background-image: linear-gradient(#ffc966, #ffae1a); }
   #account .middle img {
     float: left;
     display: block;
@@ -208,6 +228,9 @@ body {
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px; }
+    #account .middle img:hover {
+      opacity: 0.8;
+      transition: opacity 0.5s; }
   #account .middle span {
     display: inline-block;
     height: 110px;
@@ -217,7 +240,8 @@ body {
 #account .bottom .menu {
   background-color: #cc8400;
   padding: 20px;
-  float: left; }
+  float: left;
+  width: 250px; }
   #account .bottom .menu ul {
     margin: 0px;
     list-style-type: none;
@@ -240,11 +264,42 @@ body {
             text-decoration: underline; }
           #account .bottom .menu ul li ul li a:active, #account .bottom .menu ul li ul li a:visited {
             text-decoration: none;
+            color: #ff0000; }
+          #account .bottom .menu ul li ul li a:visited {
+            text-decoration: none;
             color: #fff; }
+          #account .bottom .menu ul li ul li a .active {
+            color: #FF9900 !important; }
     #account .bottom .menu ul li span {
       position: relative;
       top: -5px;
       padding-left: 5px; }
+#account .bottom .data {
+  margin-left: 290px; }
+  #account .bottom .data .content {
+    width: 100%; }
+#account .bottom table {
+  width: 100%;
+  -webkit-box-shadow: 1px 1px 2px #ccc;
+  -moz-box-shadow: 1px 1px 2px #ccc;
+  box-shadow: 1px 1px 2px #ccc; }
+  #account .bottom table thead {
+    padding: 20px;
+    background-color: #500000;
+    color: #fff; }
+    #account .bottom table thead th {
+      padding: 10px;
+      text-align: left; }
+  #account .bottom table tbody {
+    color: #fff; }
+    #account .bottom table tbody td {
+      padding: 10px; }
+    #account .bottom table tbody tr:nth-child(odd) {
+      background-color: #830000; }
+    #account .bottom table tbody tr:nth-child(even) {
+      background-color: #b60000; }
+    #account .bottom table tbody tr:hover {
+      background-color: #370000; }
 
 .feedback {
   text-align: left;
@@ -272,8 +327,89 @@ body {
       .nav-link ul li a {
         display: block;
         padding: 5px;
-        text-decoration: none; }
+        text-decoration: none;
+        color: #00f;
+        cursor: pointer; }
         .nav-link ul li a:hover {
           text-decoration: underline; }
+        .nav-link ul li a:active {
+          text-decoration: none;
+          color: #00f; }
+        .nav-link ul li a:visited {
+          text-decoration: none;
+          color: #00f; }
+  .nav-link .modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none; }
+    .nav-link .modalDialog form {
+      pointer-events: auto; }
+      .nav-link .modalDialog form input[type='text'], .nav-link .modalDialog form textArea {
+        padding: 10px;
+        margin: 5px;
+        width: 90%;
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px; }
+      .nav-link .modalDialog form textArea {
+        height: 100px;
+        resize: none; }
+      .nav-link .modalDialog form input[type='button'] {
+        border: none;
+        padding: 10px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        width: 95%;
+        margin: 5px;
+        background-color: #333;
+        color: #fff; }
+        .nav-link .modalDialog form input[type='button']:hover {
+          background-color: #4d4d4d; }
+  .nav-link .modalDialog:target {
+    opacity: 1;
+    pointer-events: auto; }
+  .nav-link .modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999); }
+  .nav-link .close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    pointer-events: auto;
+    cursor: pointer; }
+  .nav-link .close:hover {
+    background: #00d9ff; }
 
 /*# sourceMappingURL=styles.css.map */

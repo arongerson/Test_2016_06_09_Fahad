@@ -70,6 +70,14 @@ body {
         height: 100px;
         background: $theme_color;
         position: relative;
+        img {
+            width: $logo_size;
+            height: $logo_size;
+            position: relative;
+            top: 20px;
+            left: 30px;
+        }
+
         .position {
             position: absolute;
             right: 0px;
@@ -130,10 +138,11 @@ body {
         }
 
     }
-    
+
     .middle {
         background-color: lighten($theme_color, 20%);
-        
+        @include linear-gradient(lighten($theme_color, 20%), lighten($theme_color, 5%));
+
         img {
             float: left;
             display: block;
@@ -141,8 +150,12 @@ body {
             width: $profile_pic_size;
             height: $profile_pic_size;
             @include rounded($profile_pic_size);
+            &:hover {
+                opacity: 0.8;
+                transition: opacity 0.5s;
+            }
         }
-        
+
         span {
             display: inline-block;
             height: $profile_pic_size + $medium_padding;
@@ -153,12 +166,13 @@ body {
             }
         }
     }
-    
+
     .bottom {
         .menu {
             background-color: darken($theme_color, 10%);
             padding: $large_padding;
             float: left;
+            width: $menu_width;
             ul {
                 margin: 0px;
                 list-style-type: none;
@@ -184,7 +198,14 @@ body {
                                 }
                                 &:active, &:visited {
                                     text-decoration: none;
+                                    color: #ff0000;
+                                }
+                                &:visited {
+                                    text-decoration: none;
                                     color: #fff;
+                                }
+                                .active {
+                                    color: #FF9900 !important;
                                 }
                             }
                         }
@@ -197,6 +218,44 @@ body {
                 }
             }
         }
+
+        .data {
+            margin-left: $menu_width +  2 * $large_padding;
+            .content  {
+                width: 100%;
+                // padding: $medium_padding;
+            }
+        }
+
+        table {
+            width: 100%;
+            @include shadow(1px, 1px, 2px, #ccc);
+            thead {
+                padding: $large_padding;
+                background-color: $table_header_bg_color;
+                color: #fff;
+                th {
+                    padding: $medium_padding;
+                    text-align: left;
+                }
+            }
+            tbody {
+                color: #fff;
+                td {
+                    padding: $medium_padding;
+                }
+                tr:nth-child(odd) {
+                    background-color: $table_odd_row_bg_color;
+                }
+                tr:nth-child(even) {
+                    background-color: $table_even_row_bg_color;
+                }
+                tr:hover {
+                    background-color: $table_hover_bg_color;
+                }
+            }
+        }
+
     }
 }
 
@@ -229,11 +288,107 @@ body {
                 display: block;
                 padding: $small_padding;
                 text-decoration: none;
+                color: #00f;
+                cursor: pointer;
                 &:hover {
                     text-decoration: underline;
+                }
+                &:active {
+                    text-decoration: none;
+                    color: #00f;
+                }
+                &:visited {
+                    text-decoration: none;
+                    color: #00f;
                 }
             }
         }
     }
+
+    .modalDialog {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+        
+        form {
+           pointer-events: auto; 
+           
+           input[type='text'], textArea {
+               padding: $medium_padding;
+               margin: $small_margin;
+               width: 90%;
+               border: none;
+               @include rounded(5px);
+           }
+           textArea {
+               height: 100px;
+               resize: none;
+           }
+           
+           input[type='button'] {
+               border: none;
+               padding: $medium_padding;
+               @include rounded(5px);
+               width: 95%;
+               margin: $small_margin;
+               background-color: #333;
+               color: #fff;
+               &:hover {
+                   background-color: lighten(#333, 10%);
+               }
+           }
+           
+        }
+    }
+
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+
+    .modalDialog > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #999);
+        background: -webkit-linear-gradient(#fff, #999);
+        background: -o-linear-gradient(#fff, #999);
+        //pointer-events: none;
+    }
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    .close:hover { background: #00d9ff; }
 }
 
