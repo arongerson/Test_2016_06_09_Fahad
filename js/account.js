@@ -56,7 +56,7 @@ app.controller('mainController', function ($scope, $rootScope, $http, $location)
             $scope.error = 'request is sent successfully.';
             $scope.showError = true;
             $scope.feedback_color = '#00CC66';
-            setTimeout(function() {
+            setTimeout(function () {
                 $scope.close();
             }, 3000);
         } else {
@@ -70,45 +70,54 @@ app.controller('mainController', function ($scope, $rootScope, $http, $location)
         var valid = $scope.validateSubject() && $scope.validateDetails();
         return valid;
     };
-    
+
     $scope.close = function () {
         $('#support').css('opacity', 0);
+        $('.modalDialog').css('z-index', -100);
     };
 });
 
 app.controller('totalSalesPerSalesman', function ($scope, $rootScope, $http) {
-    $http({
-        url: 'http://localhost:8080/salesmandata?sessionid=' + $rootScope.sessionId,
-        method: "GET",
-        headers: {'Content-type': 'application/x-www-form-urlencoded'}
-    }).then(function (response) {
-        //alert(response.data.data);
-        var data = response.data.data;
-        var graphData = [];
-        for (var i = 0; i < data.length; i++) {
-            graphData[i] = {"label": data[i][0], "value": data[i][1]};
-        }
-        FusionCharts.ready(function () {
-            var revenueChart = new FusionCharts({
-                type: 'pie2d',
-                renderAt: 'chart-container',
-                width: '100%',
-                dataFormat: 'json',
-                dataSource: {
-                    "chart": {
-                        "caption": "Sales Total per Sales Man",
-                        "showPercentInTooltip": "0",
-                        "decimals": "1",
-                        "useDataPlotColorForLabels": "1",
-                        "theme": "fint"
-                    },
-                    "data": graphData
+    var load = function () {
+        $http({
+            url: 'http://localhost:8080/salesmandata?sessionid=' + $rootScope.sessionId,
+            method: "GET",
+            headers: {'Content-type': 'application/x-www-form-urlencoded'}
+        }).then(function (response) {
+            //alert(response.data.data);
+            var data = response.data.data;
+            if (data == null) {
+                load();
+            } else {
+                var graphData = [];
+                for (var i = 0; i < data.length; i++) {
+                    graphData[i] = {"label": data[i][0], "value": data[i][1]};
                 }
-            }).render();
+                FusionCharts.ready(function () {
+                    var revenueChart = new FusionCharts({
+                        type: 'pie2d',
+                        renderAt: 'chart-container',
+                        width: '100%',
+                        dataFormat: 'json',
+                        dataSource: {
+                            "chart": {
+                                "caption": "Sales Total per Sales Man",
+                                "showPercentInTooltip": "0",
+                                "decimals": "1",
+                                "useDataPlotColorForLabels": "1",
+                                "theme": "fint"
+                            },
+                            "data": graphData
+                        }
+                    }).render();
+                });
+            }
+
+        }, function (response) {
+            // error message
         });
-    }, function (response) {
-        // error message
-    });
+    };
+    load();
 });
 
 app.controller('totalSalesPerMonth', function ($scope, $rootScope, $http) {
@@ -231,7 +240,7 @@ $(document).ready(function () {
     $('.link').click(function () {
         $('.link').css('color', '#fff');
         $(this).css('color', '#FF9900');
-        
+
         $(this).css('z-index', 100);
     });
 
@@ -247,9 +256,9 @@ $(document).ready(function () {
         $('#' + id).css('opacity', '0');
         $('.modalDialog').css('z-index', -100);
     });
-    
-    $('.modalDialog').click(function() {
-       // alert('');
+
+    $('.modalDialog').click(function () {
+        // alert('');
     });
 
 });

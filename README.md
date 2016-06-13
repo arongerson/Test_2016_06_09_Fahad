@@ -1,3 +1,3 @@
-# Test_2016_06_09_Fahad
-front end developer given by Fahad to be completed on Sunday
-just a sample read me file
+A sales sample application using HTML5, jQuery, CSS, AngularJs.
+
+

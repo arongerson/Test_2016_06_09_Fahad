@@ -4,7 +4,78 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('account', ['ui.router']).controller('loginController', function ($scope, $http, $rootScope) {
+var app = angular.module('account', ['ui.router']);
+app.controller('mainController', function ($scope, $rootScope, $http, $location) {
+    $http({
+        url: 'get_id.php',
+        method: "GET"
+    }).then(function (response) {
+        var res = response.data;
+        $rootScope.sessionId = res.session;
+    }, function (response) {
+        //
+    });
+    $scope.logout = function () {
+        $http({
+            url: 'http://localhost:8080/logout?sessionid=' + $rootScope.sessionId,
+            method: "GET",
+            headers: {'Content-type': 'application/x-www-form-urlencoded'}
+        }).then(function (response) {
+        }, function (response) {
+            // the feedback returned is not in json format so an exception is thrown thats why it is caught here
+            window.location = "index.php";
+        });
+    };
+    $scope.getClass = function (path) {
+        return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+    };
+
+    $scope.subject = '';
+    $scope.details = '';
+    $scope.showError = false;
+
+    $scope.validateSubject = function () {
+        if ($scope.subject.trim() === '') {
+            return false;
+        }
+        return true;
+    };
+
+    $scope.validateDetails = function () {
+        if ($scope.details.trim() === '') {
+            return false;
+        }
+        return true;
+    };
+
+    $scope.sendSupport = function () {
+        if ($scope.validateSupport()) {
+            $scope.subject = '';
+            $scope.details = '';
+            $scope.error = 'request is sent successfully.';
+            $scope.showError = true;
+            $scope.feedback_color = '#00CC66';
+            setTimeout(function () {
+                $scope.close();
+            }, 3000);
+        } else {
+            $scope.error = 'fill in all inputs';
+            $scope.feedback_color = '#f00';
+            $scope.showError = true;
+        }
+    };
+
+    $scope.validateSupport = function () {
+        var valid = $scope.validateSubject() && $scope.validateDetails();
+        return valid;
+    };
+
+    $scope.close = function () {
+        $('#support').css('opacity', 0);
+    };
+});
+
+app.controller('loginController', function ($scope, $http, $rootScope) {
     //alert('hiiii');
     var init = function () {
         $scope.error_username = '';
@@ -79,7 +150,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
+
     $('.page').click(function () {
         var id = $(this).attr('data-bind');
         $('#' + id).css('opacity', '1');

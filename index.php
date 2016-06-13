@@ -15,7 +15,7 @@ session_destroy();
         <script src="js/script.js" type="text/javascript"></script>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body ng-init="dynamic = 'partials/login.php'">
+    <body ng-init="dynamic = 'partials/login.php'" ng-controller="mainController">
         <div>
             <div ng-include="dynamic"></div>
             <?php require './partials/footer.php'; ?>
