@@ -26,6 +26,10 @@ and open the template in the editor.
     Created on : Jun 9, 2016, 3:03:39 PM
     Author     : aron
 */
+body {
+  padding: 0px;
+  margin: 0px; }
+
 #header {
   text-align: center;
   margin-top: 100px;
@@ -128,17 +132,134 @@ and open the template in the editor.
       margin-left: 10px auto;
       margin-right: 10px auto; } }
 
+#account .top {
+  height: 100px;
+  background: #FFA500;
+  position: relative; }
+  #account .top .position {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    /* Fallback for sad browsers */
+    background-color: #cc8400;
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(#FFA500, #cc8400);
+    /* Opera */
+    background-image: -o-linear-gradient(#FFA500, #cc8400);
+    /* WebKit (Safari 4+, Chrome 1+) */
+    background-image: -webkit-gradient(linear, ┬╗ left top, left bottom, color-stop(0, #FFA500), ┬╗ color-stop(1, #cc8400));
+    /* WebKit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(#FFA500, #cc8400);
+    /* IE10 */
+    background-image: -ms-linear-gradient(#FFA500, #cc8400);
+    /* W3C */
+    background-image: linear-gradient(#FFA500, #cc8400); }
+    #account .top .position ul {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none; }
+      #account .top .position ul li {
+        float: left;
+        padding: 0px;
+        margin: 0px; }
+        #account .top .position ul li a {
+          text-decoration: none; }
+          #account .top .position ul li a span {
+            display: block;
+            padding: 10px;
+            position: relative; }
+        #account .top .position ul li ul {
+          display: none;
+          clear: both;
+          position: absolute;
+          top: 38px;
+          right: 0px;
+          margin: 0px;
+          padding: 0px;
+          list-style-type: none;
+          background-color: #ffb733; }
+          #account .top .position ul li ul li {
+            padding: 0px;
+            margin: 0px;
+            float: none; }
+            #account .top .position ul li ul li a {
+              display: block;
+              text-decoration: none;
+              font-size: 12px;
+              font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+              font-style: normal;
+              font-variant: normal;
+              font-weight: bolder;
+              padding: 10px;
+              text-align: left;
+              border-left: solid #ffb733 2px; }
+              #account .top .position ul li ul li a:hover {
+                border-left: solid #000 2px; }
+        #account .top .position ul li input {
+          padding: 5px; }
+#account .middle {
+  background-color: #ffc966; }
+  #account .middle img {
+    float: left;
+    display: block;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px; }
+  #account .middle span {
+    display: inline-block;
+    height: 110px;
+    padding-top: 20px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20px; }
+#account .bottom .menu {
+  background-color: #cc8400;
+  padding: 20px;
+  float: left; }
+  #account .bottom .menu ul {
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px; }
+    #account .bottom .menu ul li img {
+      width: 20px;
+      height: 20px; }
+    #account .bottom .menu ul li ul {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none; }
+      #account .bottom .menu ul li ul li {
+        padding-left: 10px; }
+        #account .bottom .menu ul li ul li a {
+          display: block;
+          padding: 10px;
+          text-decoration: none;
+          color: #fff; }
+          #account .bottom .menu ul li ul li a:hover {
+            text-decoration: underline; }
+          #account .bottom .menu ul li ul li a:active, #account .bottom .menu ul li ul li a:visited {
+            text-decoration: none;
+            color: #fff; }
+    #account .bottom .menu ul li span {
+      position: relative;
+      top: -5px;
+      padding-left: 5px; }
+
 .feedback {
-  text-align: center;
+  text-align: left;
+  color: #ff0011;
   padding: 5px; }
   .feedback img {
-    display: inline-block; }
+    display: inline-block;
+    width: 20px; }
 
 .nav-link {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px; }
+  padding: 10px;
+  clear: both; }
   .nav-link ul {
     list-style-type: none;
     padding: 0px;

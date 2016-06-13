@@ -10,9 +10,9 @@
         <script src="js/script.js" type="text/javascript"></script>
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body ng-controller="loginController">
+    <body ng-init="dynamic='partials/login.php'">
         <div>
-            <div ui-view></div>
+            <div ng-include="dynamic"></div>
             <div class="nav-link">
                 <ul>
                     <li><a ng-href="#">Privacy Policy</a></li>

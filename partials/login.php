@@ -1,5 +1,5 @@
 <div id="header"><span class="first">Welcome to</span><span class="second"> Sales Manager</span></div>
-<div id="content">
+<div id="content" ng-controller="loginController">
     <div class="login-title">Please sign in</div>
     <div class="login-body">
         <form name="login">
@@ -15,8 +15,7 @@
                 <input type="button" value="Login" ng-click="click()" style="{{ button_disabled_class}}"
                        ng-disabled="validate()"/>
             </div>
-            <div class="separator"></div>
+            <div class="feedback"><img src="img/default.svg" alt="loading" ng-show="showLoading"/><span ng-show="showFeedback()"> {{ feedback }}</span></div>
         </form>
     </div>
 </div>
-<div class="feedback"><img src="" alt="loading" ng-show="showLoading()"/><span> {{ feedback}}</span></div>

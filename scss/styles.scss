@@ -10,6 +10,11 @@ and open the template in the editor.
 @import 'const.scss';
 @import 'mixins.scss';
 
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
 #header {
     text-align: center;
     margin-top: $login_title_top_margin;
@@ -20,7 +25,7 @@ and open the template in the editor.
     .first {
         color: $main_bg_color1;
     }
-    
+
     .second {
         color: $main_bg_color2;
     }
@@ -48,9 +53,9 @@ and open the template in the editor.
     .login-input, .login-button {
         @include form();
     }
-    
+
     .login-error {
-        color: #ff0011;
+        color: $error_color;
     }
 
     @media screen and (max-width: 600px) {
@@ -60,11 +65,148 @@ and open the template in the editor.
     }
 }
 
+#account {
+    .top {
+        height: 100px;
+        background: $theme_color;
+        position: relative;
+        .position {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            @include linear-gradient($theme_color, darken($theme_color, 10%));
+            ul {
+                margin: 0px;
+                padding: 0px;
+                list-style-type: none;
+                li {
+                    float: left;
+                    padding: 0px;
+                    margin: 0px;
+                    a {
+                        text-decoration: none;
+                        span {
+                            display: block;
+                            padding: $medium_padding;
+                            position: relative;
+                        }
+                    }
+                    ul {
+                        display: none;
+                        clear: both;
+                        position: absolute;
+                        top: 38px;
+                        right: 0px;
+                        margin: 0px;
+                        padding: 0px;
+                        list-style-type: none;
+                        background-color: lighten($theme_color, 10%);
+                        li {
+                            padding: 0px;
+                            margin: 0px;
+                            float: none;
+                            a {
+                                display: block;
+                                text-decoration: none;
+                                font-size: $menu_font_size;
+                                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                                font-style: normal;
+                                font-variant: normal;
+                                font-weight: bolder;
+                                padding: $medium_padding;
+                                text-align: left;
+                                border-left: solid lighten($theme_color, 10%) 2px; 
+                                &:hover {
+                                    border-left: solid $menu_border_left_color 2px; 
+                                }
+                            }
+                        }
+                    }
+                    input {
+                        padding: $small_padding;
+                    }
+                }
+            }
+        }
+
+    }
+    
+    .middle {
+        background-color: lighten($theme_color, 20%);
+        
+        img {
+            float: left;
+            display: block;
+            padding: $medium_padding;
+            width: $profile_pic_size;
+            height: $profile_pic_size;
+            @include rounded($profile_pic_size);
+        }
+        
+        span {
+            display: inline-block;
+            height: $profile_pic_size + $medium_padding;
+            padding-top: $large_padding;
+            font: {
+                family:  Arial, "Helvetica Neue", Helvetica, sans-serif;
+                size: $welcome_msg_font_size;
+            }
+        }
+    }
+    
+    .bottom {
+        .menu {
+            background-color: darken($theme_color, 10%);
+            padding: $large_padding;
+            float: left;
+            ul {
+                margin: 0px;
+                list-style-type: none;
+                padding: 0px;
+                li {
+                    img {
+                        width: $icon_size;
+                        height: $icon_size;
+                    }
+                    ul {
+                        margin: 0px;
+                        padding: 0px;
+                        list-style-type: none;
+                        li {
+                            padding-left: $medium_padding;
+                            a {
+                                display: block;
+                                padding: $medium_padding;
+                                text-decoration: none;
+                                color: #fff;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                                &:active, &:visited {
+                                    text-decoration: none;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                    span {
+                        position: relative;
+                        top: -5px;
+                        padding-left: $small_padding;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .feedback {
-    text-align: center;
+    text-align: left;
+    color: $error_color;
     padding: $small_padding;
     img {
         display: inline-block;
+        width: $loading_gif_size;
     }
 }
 
@@ -73,6 +215,7 @@ and open the template in the editor.
     margin-left: auto;
     margin-right: auto;
     padding: $medium_padding;
+    clear: both;
     ul {
         list-style-type: none;
         padding: 0px;

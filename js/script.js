@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('account', ['ui.router']).controller('loginController', function ($scope, $http) {
-    alert('hiiii');
+var app = angular.module('account', ['ui.router']).controller('loginController', function ($scope, $http, $rootScope) {
+    //alert('hiiii');
     var init = function () {
         $scope.error_username = '';
         $scope.username = '';
@@ -13,10 +13,11 @@ var app = angular.module('account', ['ui.router']).controller('loginController',
         $scope.password = '';
         $scope.button_disabled_class = 'background: #ccc;';
         $scope.feedback = '';
+        $scope.showLoading = false;
     };
     init();
-    $scope.showFeedback = function (feedback) {
-        if (feedback === '') {
+    $scope.showFeedback = function () {
+        if ($scope.feedback === '') {
             return false;
         }
         return true;
@@ -45,25 +46,28 @@ var app = angular.module('account', ['ui.router']).controller('loginController',
         return !valid;
     };
     $scope.click = function () {
-        alert('hello');
-//        $http({
-//            url: 'school/new_school',
-//            method: "POST",
-//            data: $.param({'username': $scope.validUsername, 'password': $scope.validPassword,
-//                'address': $scope.validAddress, 'category': $scope.validCategory}),
-//            headers: {'Content-type': 'application/x-www-form-urlencoded'}
-//        }).then(function (response) {
-//            if (response.data.success == '1') {
-//                $scope.remote_feedback = 'the school has been added.';
-//                // clear the fields
-//                init();
-//            } else {
-//                $scope.remote_feedback = response.data.message;
-//            }
-//        }, function (response) {
-//            $scope.remote_feedback = 'oooops, the server can not be reached, check your internet connection';
-//        });
+        $scope.showLoading = true;
+        $http({
+            url: 'http://localhost:8080/login?username=Gerardo&password=Gerardo',
+            method: "GET",
+            data: $.param({'username': $scope.username, 'password': $scope.password}),
+            headers: {'Content-type': 'application/x-www-form-urlencoded'}
+        }).then(function (response) {
+            var res = response.data;
+            if (res.loginSucceeded) {
+                // $rootScope.dynamic = 'partials/account.php';
+                window.location = "account.php";
+            } else {
+                $scope.feedback = "Incorrect username and/or password";
+                $scope.showLoading = false;
+            }
+        }, function (response) {
+            $scope.remote_feedback = 'oooops, the server can not be reached, check your internet connection';
+        });
     };
+}).controller('accountController', function($scope, $rootScope, $http) {
+    dropdown();
+    $scope.user = 'Username';
 });
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -72,11 +76,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/login',
         templateUrl: 'partials/login.php',
         controller: 'loginController'
-    }).state("otherwise", { 
+    }).state("otherwise", {
         url: '/login',
         templateUrl: 'partials/login.php',
         controller: 'loginController'
     });
 });
+
+$(document).ready(function () {
+    
+});
+
+function dropdown() {
+    var dropHoverBgColor;
+    var dropBgColor = $('#account-dropdown').css('background-color');
+    //alert(dropBgColor);
+    $('#account-dropdown').hover(function () {
+        $('#dropdown-menu').show();
+        dropHoverBgColor = $('#dropdown-menu').css('background-color');
+        $('#account-dropdown').css('background-color', dropHoverBgColor);
+    }, function () {
+        hide_dropdown = setTimeout(function () {
+            $('#dropdown-menu').hide();
+            $('#account-dropdown').css('background-color', dropBgColor);
+        }, 10);
+    });
+    $('#dropdown-menu').hover(function () {
+        clearTimeout(hide_dropdown);
+        $('#account-dropdown').css('background-color', dropHoverBgColor);
+    }, function () {
+        $('#account-dropdown').css('background-color', dropBgColor);
+        $('#dropdown-menu').hide();
+    });
+}
 
 
